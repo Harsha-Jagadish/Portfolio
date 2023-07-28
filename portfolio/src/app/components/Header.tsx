@@ -57,7 +57,7 @@ export default function Header({}: Props) {
         transition ={{
             duration: 1.5,
         }}
-        className="flex flex-row items-center cursor-pointer ">
+        className="flex flex-row items-center cursor-pointer text-gray-300 ">
             <SocialIcon url="www.outlook.com"
                 className="cursor-pointer"
                 network="email"
