@@ -3,6 +3,7 @@ import Head from 'next/head'
 import styles from "../styles/Home.modules.css";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
+import About from "./components/About";
 
 export default function Home() {
   return (
@@ -22,8 +23,16 @@ export default function Home() {
 
     {/* About */}
 
+    <section id="About" className="snap-center">
+      <About />
+    </section>
+
     {/* Experience */}
 
+    <section id="Experience" className="snap-center">
+      <WorkExperience />
+    </section>
+    
     {/* Skills */}
 
     {/* Projects */}
