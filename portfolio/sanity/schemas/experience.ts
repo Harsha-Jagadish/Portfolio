@@ -41,13 +41,13 @@ export default defineType({
     {
       name: "technologies",
       title: "Technologies",
-      type: "array"
+      type: "array",
       of: [{type: "reference", to: {type: "skill"}}],
     },
     {
       name: "points",
       title: "Points",
-      type: "array"
+      type: "array",
       of: [{type: "string"}],
     },    
   ],

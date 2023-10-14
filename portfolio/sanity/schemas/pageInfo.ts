@@ -48,13 +48,13 @@ export default defineType({
     },
     {
       name: "address",
-      title: "Address"
+      title: "Address",
       type: "string",
     },
     {
       name: "socials",
       title: "Socials",
-      type: "array"
+      type: "array",
       of: [{type: "reference", to: {type: "social"}}],
     },    
   ],
