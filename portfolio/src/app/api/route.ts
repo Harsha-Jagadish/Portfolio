@@ -1,5 +1,4 @@
 // app/api/route.js 👈🏽
-
 import { NextResponse } from "next/server";
 
 // To handle a GET request to /api
