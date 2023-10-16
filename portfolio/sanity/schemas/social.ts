@@ -6,8 +6,8 @@ export default defineType({
   type: 'document',
   fields: [
     {
-      name: "tile",
-      title: "Tile",
+      name: "title",
+      title: "Title",
       description: "Platform for social media",
       type: "string",
     },
