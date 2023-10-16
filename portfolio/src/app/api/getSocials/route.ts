@@ -1,17 +1,14 @@
-import type {NextApiRequest, NextApiResponse} from "next";
+// app/api/getSocials.tsx
+import { NextResponse } from 'next/server';
 import { groq } from "next-sanity";
-import {sanityClient} from "../sanity";
-import { NextResponse } from "next/server";
+import { sanityClient } from "../sanity";
 import { Social } from "../../../../typings";
 
 const query = groq`
     *[ _type == "social"]
-`
-type Data ={
-    scoials: Social[]
-}
+`;
 
 export async function GET() {
-  const socials: Social[] = await sanityClient.fetch(query);
-  return NextResponse.json({ socials }, { status: 200 });
+    const socials: Social[] = await sanityClient.fetch(query);
+    return NextResponse.json({ socials });
 }

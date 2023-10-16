@@ -13,10 +13,10 @@ import {schema} from './sanity/schema'
 export default defineConfig({
 
   basePath: '/studio',
-  projectId,
-  dataset,
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "st8z0yhc",
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || "production",
   useCdn: false,
-  // Add and edit the content schema in the './sanity/schema' folder
+  apiVersion: "2023-10-14",
   schema,
   plugins: [
     deskTool(),

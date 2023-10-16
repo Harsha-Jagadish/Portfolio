@@ -1,3 +1,5 @@
+"use client";
+
 import Image from 'next/image'
 import Head from 'next/head'
 import styles from "../styles/Home.modules.css";
@@ -16,6 +18,7 @@ import {  fetchSkills} from "../../utils/fetchSkills";
 import {fetchSocials } from "../../utils/fetchSocials";
 import { Experience, PageInfo, Skill, Project, Social} from "../../typings";
 import { GetServerSideProps } from 'next';
+import { useState, useEffect } from 'react';
 
 type Props = {
 
@@ -27,7 +30,25 @@ type Props = {
 
 };
 
-export default function Home({pageInfo, experiences, skills, projects, socials}: Props) {
+
+
+
+
+export default function Home(props: Props) {
+  const [pageInfo, setPageInfo] = useState<PageInfo | null>(props.pageInfo);
+  const [experiences, setExperiences] = useState<Experience[] | null>(props.experiences);
+  const [skills, setSkills] = useState<Skill[] | null>(props.skills);
+  const [projects, setProjects] = useState<Project[] | null>(props.projects);
+  const [socials, setSocials] = useState<Social[] | null>(props.socials);
+
+  useEffect(() => {
+    async function fetchData() {
+      if (!socials) setSocials(await fetchSocials());
+    }
+    fetchData();
+  }, [pageInfo, experiences, skills, projects, socials]);
+
+
   return (
     <div className="bg-[rgb(36,36,36)] text-white h-screen snap-y snap-mandatory overflow-y-scroll z-0 scrollbar scrollbar-track-gray-400/20 scrollbar-thumb-[#F7AB0A]/80">
     <Head>
@@ -36,6 +57,7 @@ export default function Home({pageInfo, experiences, skills, projects, socials}:
     {/*<h1 className="text-blue-800"> Harsha's Portfolio </h1> */}
 
     {/* Header */}
+    
     <Header socials={socials} />
 
     {/* Hero */}
@@ -79,18 +101,3 @@ export default function Home({pageInfo, experiences, skills, projects, socials}:
   );
 }
 
-Home.getInitialProps = async () => {
-  const pageInfo: PageInfo = await fetchPageInfo();
-  const experiences: Experience[] = await fetchExperiences();
-  const skills: Skill[] = await fetchSkills();
-  const projects: Project[] = await fetchProjects();
-  const socials: Social[] = await fetchSocials();
-
-  return {
-    pageInfo,
-    experiences,
-    skills,
-    projects,
-    socials,
-  };
-}

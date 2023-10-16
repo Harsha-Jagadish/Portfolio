@@ -12,15 +12,8 @@ type Props = {
     socials: Social[];
 }
 
-Header.getInitialProps = async () => {
-    const socials: Social[] = await fetchSocials();
-  
-    return {
-      socials,
-    };
-  }
-
-export default function Header({ socials=[] }: Props) {
+export default function Header({ socials }: Props) {
+    console.log('Socials:', {socials});
   return (
     <header className="sticky top-0 p-5 flex flex-row items-start justify-between max-w-7xl mx-auto">
         <motion.div 
@@ -40,7 +33,7 @@ export default function Header({ socials=[] }: Props) {
         className="flex flex-row">
             {/*Social Icons*/}
 
-            {socials.map((social)=> (
+            {socials && socials.map((social)=> (
 
                 <SocialIcon
                     key={social._id}
@@ -52,7 +45,7 @@ export default function Header({ socials=[] }: Props) {
             ))}
         </motion.div>
 
-        <a href="#contact">
+        <div onClick={() => window.location.href = '#contact'} className="cursor-pointer">
         <motion.div 
         initial ={{
             x:+500,
@@ -67,7 +60,7 @@ export default function Header({ socials=[] }: Props) {
         transition ={{
             duration: 1.5,
         }}
-        className="flex flex-row items-center cursor-pointer text-gray-300 ">
+        className="flex flex-row items-center text-gray-300 ">
             <SocialIcon url="www.outlook.com"
                 className="cursor-pointer"
                 network="email"
@@ -77,7 +70,7 @@ export default function Header({ socials=[] }: Props) {
             <p className="uppercase hidden md:inline-flex text-sm text-gray400 "> Get In Touch</p>
                 
         </motion.div>
-        </a>
+        </div>
 
     </header>
   );
