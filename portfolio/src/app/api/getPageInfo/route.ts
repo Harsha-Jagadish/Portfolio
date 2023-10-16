@@ -1,7 +1,7 @@
 // app/api/pageInfo.tsx
 import { NextResponse } from 'next/server';
 import { groq } from 'next-sanity';
-import { sanityClient } from '../../../../sanity';
+import { sanityClient } from '../sanity';
 import { PageInfo } from '../../typings';
 
 const query = groq`
