@@ -1,7 +1,7 @@
 // app/api/experiences.tsx
 import { NextResponse } from 'next/server';
 import { groq } from 'next-sanity';
-import { sanityClient } from '../../../../sanity';
+import { sanityClient } from "../../../../sanity/sanity.ts";
 import { Experience } from '../../typings';
 
 const query = groq`

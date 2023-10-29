@@ -5,6 +5,7 @@
 import {visionTool} from '@sanity/vision'
 import {defineConfig} from 'sanity'
 import {deskTool} from 'sanity/desk'
+import imageUrlBuilder from '@sanity/image-url'
 
 // Go to https://www.sanity.io/docs/api-versioning to learn how API versioning works
 import {apiVersion, dataset, projectId} from './env'
@@ -15,7 +16,7 @@ export default defineConfig({
   basePath: '/studio',
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "st8z0yhc",
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || "production",
-  useCdn: false,
+  useCdn:false,
   apiVersion: "2023-10-14",
   // Add and edit the content schema in the './sanity/schema' folder
   schema,

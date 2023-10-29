@@ -4,27 +4,37 @@ import React from 'react'
 import { Cursor, useTypewriter } from "react-simple-typewriter";
 import BackgroundCircles from "./BackgroundCircles";
 import Image from "./Image";
+import { PageInfo } from "../../typings";
+import { sanityClient } from "../../../sanity/sanity.ts";
+import imageUrlBuilder from '@sanity/image-url'
+import { urlFor } from '../../../sanity/sanity.ts';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-type Props = {}
 
-export default function Hero({}: Props) {
+type Props = {
+    pageInfo: PageInfo;
+}
+
+export default function Hero({pageInfo={}}: Props) {
     const [text, count] = useTypewriter ({
         words: ["Hi, my name is Harsha", "Developer", "Project Associate", "Analyst"],
         loop: true,
         delaySpeed: 2000,
     })
+    console.log(pageInfo?.heroImage);
   return (
     <Router>
     <div className="h-screen flex flex-col space-y-8 items-center justify-center text-center overflow-hidden">
         <BackgroundCircles />
+        {pageInfo?.heroImage && (
         <img
         className="relative rounded-full h-32 w-32 mx-auto object-cover"
-        src="/1627366534091.jpeg" 
+        src={urlFor(pageInfo?.heroImage).url()}    
+        //src="/1627366534091.jpeg" 
         />
-
+        )}
         <div className="z-20"> 
-        <h2 className="text-sm uppercase text-gray-500 pb-2 tracking-[15px]"> Software Engineer</h2>
+        <h2 className="text-sm uppercase text-gray-500 pb-2 tracking-[15px]"> pageInfo?. </h2>
         <h1 className="text-5xl lg:text-6xl font-semibold px-10">
             <span className="mr-3">{text}</span>
             <Cursor cursorColor="orange"/>

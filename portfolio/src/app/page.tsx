@@ -35,6 +35,7 @@ type Props = {
 
 
 export default function Home(props: Props) {
+
   const [pageInfo, setPageInfo] = useState<PageInfo | null>(props.pageInfo);
   const [experiences, setExperiences] = useState<Experience[] | null>(props.experiences);
   const [skills, setSkills] = useState<Skill[] | null>(props.skills);
@@ -44,6 +45,10 @@ export default function Home(props: Props) {
   useEffect(() => {
     async function fetchData() {
       if (!socials) setSocials(await fetchSocials());
+      if (!pageInfo) setPageInfo(await fetchPageInfo());
+      //if (!experiences) setExperiences(await fetchExperiences());
+      if (!skills) setSkills(await fetchSkills());
+      if (!projects) setProjects(await fetchProjects());
     }
     fetchData();
   }, [pageInfo, experiences, skills, projects, socials]);
@@ -62,7 +67,7 @@ export default function Home(props: Props) {
 
     {/* Hero */}
     <section id="hero" className="snap-start">
-      <Hero />
+      <Hero pageInfo={pageInfo}/>
     </section>
 
     {/* About */}
