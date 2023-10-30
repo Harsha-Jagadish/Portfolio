@@ -31,33 +31,31 @@ type Props = {
 };
 
 
+export default function Home(props: Props){
 
-
-
-export default function Home(props: Props) {
-
-  const [pageInfo, setPageInfo] = useState<PageInfo | null>(props.pageInfo);
-  const [experiences, setExperiences] = useState<Experience[] | null>(props.experiences);
-  const [skills, setSkills] = useState<Skill[] | null>(props.skills);
-  const [projects, setProjects] = useState<Project[] | null>(props.projects);
-  const [socials, setSocials] = useState<Social[] | null>(props.socials);
+const [pageInfo, setPageInfo] = useState<PageInfo>(props.pageInfo);
+const [experiences, setExperiences] = useState<Experience[]>(props.experiences);
+const [skills, setSkills] = useState<Skill[]>(props.skills);
+const [projects, setProjects] = useState<Project[]>(props.projects);
+const [socials, setSocials] = useState<Social[]>(props.socials);
 
   useEffect(() => {
     async function fetchData() {
-      if (!socials) setSocials(await fetchSocials());
-      if (!pageInfo) setPageInfo(await fetchPageInfo());
-      //if (!experiences) setExperiences(await fetchExperiences());
-      if (!skills) setSkills(await fetchSkills());
-      if (!projects) setProjects(await fetchProjects());
+      if (!projects || projects.length === 0) setProjects(await fetchProjects());
+      if (!socials || socials.length === 0) setSocials(await fetchSocials());
+      if (!skills || skills.length === 0) setSkills(await fetchSkills());
+      if (!experiences || experiences.length === 0) setExperiences(await fetchExperiences());
+      if (!pageInfo || Object.keys(pageInfo).length === 0) setPageInfo(await fetchPageInfo());
+      
     }
+    
     fetchData();
-  }, [pageInfo, experiences, skills, projects, socials]);
-
+  }, []);  // Notice the empty dependency array
 
   return (
     <div className="bg-[rgb(36,36,36)] text-white h-screen snap-y snap-mandatory overflow-y-scroll z-0 scrollbar scrollbar-track-gray-400/20 scrollbar-thumb-[#F7AB0A]/80">
     <Head>
-      <title>Harsha's Portfolio</title>
+      <title>Portfolio</title>
     </Head>
     {/*<h1 className="text-blue-800"> Harsha's Portfolio </h1> */}
 
@@ -73,26 +71,26 @@ export default function Home(props: Props) {
     {/* About */}
 
     <section id="about" className="snap-center">
-      <About />
+      <About pageInfo={pageInfo} />
     </section>
 
     {/* Experience */}
 
     <section id="experience" className="snap-center">
-      <WorkExperience />
+      <WorkExperience experiences={experiences} />
     </section>
 
     {/* Skills */}
 
     <section id="skills" className="snap-start">
-      <Skills />
+      <Skills skills ={skills} />
 
     </section>
 
     {/* Projects */}
 
     <section id="projects" className="snap-center">
-      <Projects />
+      <Projects projects ={projects} />
       
     </section>
 

@@ -15,12 +15,14 @@ interface Image {
 }
 
 export interface PageInfo extends SanityBody {
+    [x: string]: ReactNode;
     _type: "pageInfo";
     address: string;
     backgroundInformation: string;
     email: string;
     heroImage: Image;
     name: string;
+    role: string;
     phoneNumber: string;
     profilePic: Image;
 }
@@ -57,6 +59,7 @@ export interface Project extends SanityBody {
 
     title: string;
     _type: "project";
+    summary: string;
     image: Image;
     linkToBuild: string;
     technologies: Technology[];

@@ -1,8 +1,8 @@
 // app/api/projects.tsx
 import { NextResponse } from 'next/server';
 import { groq } from 'next-sanity';
-import { sanityClient } from "../../../../sanity/sanity.ts";
-import { Project } from '../../typings';
+import { sanityClient } from "../../../../sanity/sanity";
+import { Project } from '../../../../typings';
 
 const query = groq`
 *[_type == "project"]{

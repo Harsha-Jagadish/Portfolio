@@ -2,11 +2,15 @@
 
 import React from 'react'
 import {motion} from "framer-motion"
+import { Project } from '../../../typings';
+import { urlFor } from '../../../sanity/sanity';
 
-type Props = {}
+type Props = {
+    projects: Project[];
+}
 
-function Projects({}: Props) {
-    const projects =[1, 2, 3, 4, 5];
+function Projects({projects ={}}: Props) {
+  
   return (
     <motion.div 
     
@@ -15,32 +19,62 @@ function Projects({}: Props) {
         Projects
         </h3>
 
+        {projects?.map && (
         <div className="relative w-full flex overflow-x-scroll overflow-y-hidden snap-x snap-mandatory z-20 scrollbar scrollbar-track-gray-400/20 scrollbar-thumb-[#F7AB0A]/80">
-            {projects.map((project, i) => (
-                <div className="w-screen flex-shrink-0 snap-center flex flex-col space-y-5 items-center justify-center p-20 md:p-44 h-screen">
+            {projects?.map((project, i) => (
+                <div 
+                    key={project?._id} 
+                    className="w-screen flex-shrink-0 snap-center flex flex-col space-y-5 items-center justify-center p-20 md:p-44 h-screen"
+                    >
+                    
+                    {project.image && (
                     <motion.img
                         initial={{y: -300, opacity: 0}}
                         transition={{duration: 1.2}}
                         whileInView={{opacity: 1, y:0}}
                         
-                        className="mb-20 md:mb-0 flex-shrink-0 w-56 h-56 rounded-full object-cover md:rounded-lg md:w-64 md:h-90 xl:w-[500px] xl:h-[600px]"
-                        src="/DDclone.png"
+                        className="mb-20 md:mb-0 flex-shrink-0 w-56 h-56 rounded-full object-cover "
+                        src={urlFor(project?.image).url()}
+                        //src="/DDclone.png"
                         alt=""
                     />
+                    )}
                     <div className="space-y-10 px-0 md:px-10 max-w-6xl">
                         <h4 className="text-4xl font-semibold text-center">
-                            Case Study {i+1}: DoorDash Clone
+                            {project?.title}
                         </h4>
 
+                        <div className='flex items-center space-x-2 justify-center'>
+                        {project?.technologies.map((technology) =>(
+                            technology && technology.image ? (
+                            <img 
+                                className='h-10 w-10'
+                                key={technology._id}
+                                src={urlFor(technology.image).url()}
+                                alt=" "
+                            />
+                            ) : null
+                        ))}
+                        </div>
+
                         <p className="text-lg text-center md:text-left">
-                            Project description with github repository link:
+                            {project?.summary}
                         </p>
+                        
+
+                        <h5 className="bg-[#F7AB0A] text-lg text-center ">
+                            Build:{" "}
+                            <a href={project?.linkToBuild} target="_blank" rel="noopener noreferrer">
+                                    {project?.linkToBuild}
+                            </a>
+                        </h5>
 
 
                     </div>    
                 </div>
             ))}
         </div>
+        )}
 
         <div className="w-full absolute top-[30%] bg-[#F7AB0A]/10 left-0 h-[500px] -skew-y-12">
 

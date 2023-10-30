@@ -3,7 +3,7 @@
 import React from 'react'
 import { SocialIcon } from "react-social-icons";
 import { motion } from "framer-motion";
-import { Social } from "../../typings";
+import { Social } from "../../../typings";
 import Link from "next/link";
 
 

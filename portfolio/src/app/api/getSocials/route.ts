@@ -1,7 +1,7 @@
 // app/api/getSocials.tsx
 import { NextResponse } from 'next/server';
 import { groq } from "next-sanity";
-import { sanityClient } from "../../../../sanity/sanity.ts";
+import { sanityClient } from "../../../../sanity/sanity";
 import { Social } from "../../../../typings";
 
 const query = groq`

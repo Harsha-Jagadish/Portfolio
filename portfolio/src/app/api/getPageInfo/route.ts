@@ -1,8 +1,8 @@
 // app/api/pageInfo.tsx
 import { NextResponse } from 'next/server';
 import { groq } from 'next-sanity';
-import { sanityClient } from "../../../../sanity/sanity.ts";
-import { PageInfo } from '../../typings';
+import { sanityClient } from "../../../../sanity/sanity";
+import { PageInfo } from '../../../../typings';
 
 const query = groq`
 *[_type == "pageInfo"][0]

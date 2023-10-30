@@ -1,8 +1,8 @@
 // app/api/skills.tsx
 import { NextResponse } from 'next/server';
 import { groq } from 'next-sanity';
-import { sanityClient } from "../../../../sanity/sanity.ts";
-import { Skill } from '../../typings';
+import { sanityClient } from "../../../../sanity/sanity";
+import { Skill } from '../../../../typings';
 
 const query = groq`
     *[ _type == "skill"]

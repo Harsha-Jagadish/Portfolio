@@ -17,7 +17,7 @@ export default defineConfig({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "st8z0yhc",
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || "production",
   useCdn:false,
-  apiVersion: "2023-10-14",
+  apiVersion: "2023-10-15",
   // Add and edit the content schema in the './sanity/schema' folder
   schema,
   plugins: [
