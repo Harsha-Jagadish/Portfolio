@@ -4,12 +4,14 @@ import React from 'react'
 import {motion} from "framer-motion"
 import Skill from "./Skill"
 import { Skill as SkillType } from "../../../typings"
+import { useFetchProps } from '@/types';
 
 type Props = {
   skills: SkillType[]
 };
 
-function Skills({skills={}}: Props) {
+function Skills() {
+  const { skills} = useFetchProps();
   return (
     <motion.div 
         initial={{opacity: 0}}

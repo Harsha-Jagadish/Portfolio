@@ -5,12 +5,14 @@ import {motion} from "framer-motion";
 import { Experience } from '../../../typings';
 import { urlFor } from '../../../sanity/sanity';
 import { fetchExperiences } from '../../../utils/fetchExperiences';
+import { useFetchProps } from '@/types';
+import experience from '../../../sanity/schemas/experience';
 
 type Props = {
     experience: Experience
 }
 
-function ExperienceCard({experience= {}}: Props) {
+function ExperienceCard({experience}: Props) {
     console.log("Experience Data:", experience);
     
   return (

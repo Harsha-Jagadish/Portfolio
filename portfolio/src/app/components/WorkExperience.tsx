@@ -4,12 +4,14 @@ import React from 'react'
 import {motion} from "framer-motion";
 import ExperienceCard from "./ExperienceCard"
 import { Experience } from '../../../typings';
+import { useFetchProps } from '@/types';
 
 type Props = {
   experiences: Experience[]
 }
 
-function WorkExperience({experiences={}}: Props) {
+function WorkExperience() {
+  const { experiences} = useFetchProps();
   return (
     <motion.div
         initial={{opacity: 0}}

@@ -7,26 +7,15 @@ import Image from "./Image";
 import { PageInfo } from "../../../typings";
 import { urlFor } from '../../../sanity/sanity';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { useFetchProps } from '@/types';
 
 
 type Props = {
     pageInfo: PageInfo;
 }
 
-export default function Hero({pageInfo={
-    _type: 'pageInfo',
-    address: '',
-    backgroundInformation: '',
-    email: '',
-    heroImage: undefined,
-    name: '',
-    phoneNumber: '',
-    profilePic: undefined,
-    _createdAt: '',
-    _id: '',
-    _rev: '',
-    _updatedAt: ''
-}}: Props) {
+export default function Hero() {
+    const { pageInfo} = useFetchProps();
     const [text, count] = useTypewriter ({
         words: ["Hi, my name is Harsha", "Developer", "Project Associate", "Analyst"],
         loop: true,

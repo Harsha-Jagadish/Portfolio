@@ -4,26 +4,15 @@ import React from 'react'
 import {motion} from "framer-motion";
 import { PageInfo } from '../../../typings';
 import { urlFor } from '../../../sanity/sanity';
+import Image from 'next/image';
+import { useFetchProps } from '@/types';
 
 type Props = {
    pageInfo: PageInfo
 }
 
-function About({pageInfo={
-   _type: 'pageInfo',
-   address: '',
-   backgroundInformation: '',
-   email: '',
-   heroImage: undefined,
-   name: '',
-   role: '',
-   phoneNumber: '',
-   profilePic: undefined,
-   _createdAt: '',
-   _id: '',
-   _rev: '',
-   _updatedAt: ''
-}}: Props) {
+function About() {
+   const { pageInfo} = useFetchProps();
 
    console.log(pageInfo?.heroImage);
   return (

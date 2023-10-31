@@ -4,12 +4,15 @@ import React from 'react'
 import {motion} from "framer-motion"
 import { Project } from '../../../typings';
 import { urlFor } from '../../../sanity/sanity';
+import { useFetchProps } from '@/types';
 
 type Props = {
     projects: Project[];
 }
 
-function Projects({projects ={}}: Props) {
+function Projects() {
+
+    const { projects} = useFetchProps();
   
   return (
     <motion.div 

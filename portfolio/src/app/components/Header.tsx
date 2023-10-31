@@ -5,6 +5,7 @@ import { SocialIcon } from "react-social-icons";
 import { motion } from "framer-motion";
 import { Social } from "../../../typings";
 import Link from "next/link";
+import { useFetchProps } from '@/types';
 
 
 
@@ -12,7 +13,8 @@ type Props = {
     socials: Social[];
 }
 
-export default function Header({ socials }: Props) {
+export default function Header() {
+    const {socials} = useFetchProps();
     console.log('Socials:', {socials});
   return (
     <header className="sticky top-0 p-5 flex flex-row items-start justify-between max-w-7xl mx-auto">

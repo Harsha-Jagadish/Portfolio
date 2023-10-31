@@ -4,13 +4,15 @@ import React from 'react'
 import {motion} from "framer-motion"
 import { Skill } from '../../../typings';
 import { urlFor } from '../../../sanity/sanity';
+import { useFetchProps } from '@/types';
 
 
 type Props = {
     skill: Skill;
 }
 
-function Skill({skill={}}: Props) {
+function Skill({skill}: Props) {
+    
   return (
     <div className="group relative flex cursor-pointer">
         
